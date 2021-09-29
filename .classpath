@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="DoodleBot/src"/>
+	<classpathentry kind="src" path="Fictionary/src"/>
+	<classpathentry kind="src" path="FirstEverGame!/src"/>
+	<classpathentry kind="src" path="FizBuzz/src"/>
+	<classpathentry kind="src" path="Hello World/src"/>
+	<classpathentry kind="src" path="NumbersGame/src"/>
+	<classpathentry kind="src" path="TheBasics/src"/>
+	<classpathentry kind="output" path="DoodleBot/bin"/>
+</classpath>

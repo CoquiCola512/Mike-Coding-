@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,22 +6,20 @@ import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
+public class Bone extends Game_Object {
 
-public class Bullet extends Game_Object {
-	double hDrift;
-	BufferedImage missile;
+	BufferedImage bone;
 	public static int size = 1;
-	Bullet(double x, double y, int width, int height, double hDrift) {
+
+	Bone(double x, double y, int width, int height) {
 		super(x, y, width, height);
-	speed = 5;
-	this.hDrift = hDrift;
-		missile = loadImage("B_O_B.png");
-		
+		speed = 5;
+		bone = loadImage("Bone.Png");
+
 		// TODO Auto-generated constructor stub
-		
+
 	}
-	
-	
+
 	BufferedImage loadImage(String fileName) {
 		String pathc = Paths.get("").toAbsolutePath().toString();
 		BufferedImage img = null;
@@ -32,36 +29,19 @@ public class Bullet extends Game_Object {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	return img;
+
+		return img;
 	}
 
 	public void draw(Graphics g) {
-		//g.setColor(Color.BLACK);
-		//g.fillOval(x, y, width, height);
-		g.drawImage(missile, (int) x, (int) y, width * size, height * size, null);
+		// g.setColor(Color.BLACK);
+		// g.fillOval(x, y, width, height);
+		g.drawImage(bone, (int) x, (int) y, width * size, height * size, null);
 	}
 
 	public void update() {
 		super.update();
-		y -= speed;
-		x += hDrift;
-		
-		if(hDrift >= 1) {
-			hDrift = hDrift - 1;
-		}
-		
-		else if(hDrift <= -1) {
-			hDrift = hDrift + 1;
-		}
-		
-		else   {
-			hDrift = 0;
-		}
-		
+		y += speed;
 	}
 
-	
-	
-	
 }

@@ -1,0 +1,22 @@
+Powerups:
+start with 2 missiles add more as a powerup
+Tweak Power up: 
+Tweak around the amount of lives it give u
+
+upgrade to lasers
+
+Speeeeeeeeeeeed + le missiles
+Add Sound
+(Make PowerUps Appear 20 Seconds Into Each Lvl)
+
+Notes:
+we started working on making the B O B PowerUp do something
+
+Regular ToDo's Done:
+enemy health values √
+enemy health bar √
+change lives image to not have white background √
+add more powerups (B.O.B & Shield) √
+Add images for other powerups (B.O.B & Shield) √
+made powerups randomly select which power up type it is yet... √
+made it use takeDamage(); √

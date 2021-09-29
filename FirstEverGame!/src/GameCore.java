@@ -5,7 +5,8 @@ import javax.swing.JFrame;
 public class GameCore {
 
 	public static final int WIDTH = 1022;
-	public static final int  HEIGHT = 1006;
+	public static final int  HEIGHT = 736;//1006;
+
 	public static void main(String[] args) {
 		GameCore core = new GameCore();
 		core.setUp();
@@ -15,6 +16,7 @@ public class GameCore {
 	void setUp() {
 		JFrame frame = new JFrame();
 		GamePanel gPanel = new GamePanel();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.add(gPanel);
 		frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
