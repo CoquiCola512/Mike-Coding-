@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="Hello World/src"/>
 	<classpathentry kind="src" path="NumbersGame/src"/>
 	<classpathentry kind="src" path="TheBasics/src"/>
+	<classpathentry kind="src" path="WhackAMole"/>
 	<classpathentry kind="output" path="DoodleBot/bin"/>
 </classpath>

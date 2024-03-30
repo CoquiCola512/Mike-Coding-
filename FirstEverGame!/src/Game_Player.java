@@ -17,7 +17,7 @@ public class Game_Player extends Game_Object {
 	long frameTimer = 0 ;
 	long frameCooldown = 50 ;
 	int frameNum = 0 ;
-	public static int numLives = 100 ;
+	public static int numLives = 10 ;
 	public static int numScore = 0 ;
 	public static int shieldz = 0;
 	public static int bobPower = 1;
