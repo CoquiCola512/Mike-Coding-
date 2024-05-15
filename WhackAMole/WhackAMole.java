@@ -16,8 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 public class WhackAMole implements ActionListener, KeyListener {
-	JFrame frame = new 	JFrame();
+	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	JLabel label = new JLabel();
 	public static final int WIDTH = 1400;
@@ -32,176 +33,172 @@ public class WhackAMole implements ActionListener, KeyListener {
 	int[] cloudsY = new int[130];
 	int seconds = 0;
 	boolean isOnEndState = false;
-	Timer timer; 
+	Timer timer;
 	Random gen = new Random();
-public static void main(String[] args) {
-	WhackAMole mole = new WhackAMole();
-	mole.startUp();
-}
 
-void startUp () {
-	timer = new Timer(1000, this);
-	frame.addKeyListener(this);
-	frame.setVisible(true);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setPreferredSize(new Dimension(WIDTH,HEIGHT));
-	
-	
-	
-	int blue = 255;
-	int red = 0;
-	int green = 0;
-	for (int y = 50; y < HEIGHT; y += 30) {
-		Color culMKtwo = new Color(red, green, blue);
-		blue -= 7;
-		red += 7;
-		green += 2;
-		makeDaClouds(y, culMKtwo);
+	public static void main(String[] args) {
+		WhackAMole mole = new WhackAMole();
+		mole.startUp();
 	}
 
-	randomize();
-	timer.start();
-}
+	void startUp() {
+		timer = new Timer(1000, this);
+		frame.addKeyListener(this);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-void randomize() {
-	panel = new JPanel();
-	frame.add(panel);
-	Font f = new Font("Arial" , 0, 9);
-	for(int i = 0;i < 375;i += 1) {
-		Icon image = new ImageIcon("Mole.jpg");
-		JButton button = new JButton();
-		button.setPreferredSize(new Dimension(50,50));
-		button.addActionListener(this);
-		int num = gen.nextInt(100);
-		if(num < 7){
-			button.setFont(f);
-			button.setIcon(image);
-			button.setText("");
-			
-			
+		int blue = 255;
+		int red = 0;
+		int green = 0;
+		for (int y = 50; y < HEIGHT; y += 30) {
+			Color culMKtwo = new Color(red, green, blue);
+			blue -= 7;
+			red += 7;
+			green += 2;
+			makeDaClouds(y, culMKtwo);
 		}
-		
-		else {
-			button.setText(" ");
-		}
-		
-		panel.add(button);
-		
-	}
-	
-	frame.pack();
-	frame.requestFocus();
-}
 
-@Override
-public void actionPerformed(ActionEvent e) {
-	if(e.getSource()== timer) {
-		frame.setTitle("Time: " + seconds);
-	if (isOnEndState == false) {
-		seconds = seconds +1;
-	}
-	}
-	
-	else {
-	JButton clicked = (JButton) e.getSource();
-	if(clicked.getText().equals("")) {
-		System.out.println("WHACK");
-		molesPressed = molesPressed +1;
-		frame.remove(panel);
-		
 		randomize();
+		timer.start();
 	}
-	
-	else {
-		System.out.println("ERROR");
-		isOnEndState = true;
-		drawEndState(frame.getGraphics());
-		nonMolesPressed = nonMolesPressed +1;
-		frame.remove(panel);
+
+	void randomize() {
 		panel = new JPanel();
 		frame.add(panel);
+		Font f = new Font("Arial", 0, 9);
+		for (int i = 0; i < 375; i += 1) {
+			Icon image = new ImageIcon("Mole.jpg");
+			JButton button = new JButton();
+			button.setPreferredSize(new Dimension(50, 50));
+			button.addActionListener(this);
+			int num = gen.nextInt(100);
+			if (num < 7) {
+				button.setFont(f);
+				button.setIcon(image);
+				button.setText("");
+
+			}
+
+			else {
+				button.setText(" ");
+			}
+
+			panel.add(button);
+
+		}
+
+		frame.pack();
 		frame.requestFocus();
-	
-	}
-	
-	}
-	
-}
-
-public void drawEndState(Graphics g) {
-	g.setColor(Color.cyan);
-	g.fillRect(0, 0,WIDTH, HEIGHT);
-
-	for (int i = 0; i < cloudList.size(); i++) {
-		g.setColor(cloudList.get(i).cul);
-		g.fillOval(cloudList.get(i).x, cloudList.get(i).y, 100, 100);
-
 	}
 
-	g.setFont(font);
-	g.setColor(new Color(150, 250, 150));
-	g.drawString("Score:" + molesPressed + "", 50, 150);
-	g.setFont(fontEndScreen);
-	
-	g.setColor(new Color(150, 250, 150));
-	g.drawString("Game Over", GameCore.WIDTH / 2 - 230, GameCore.HEIGHT / 2 - 103);
-	g.setFont(fontRestartText);
-	g.drawString("Press Any Key (Except Esc) To Restart...", GameCore.WIDTH / 2 - 330 , GameCore.HEIGHT / 2 - 53);
-}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == timer) {
+			if (isOnEndState == false) {
+				seconds = seconds + 1;
+				frame.setTitle("Time: " + seconds);
+			}
+		}
 
-public void calculateDaClouds() {
+		else {
+			JButton clicked = (JButton) e.getSource();
+			if (clicked.getText().equals("")) {
+				System.out.println("WHACK");
+				molesPressed = molesPressed + 1;
+				frame.remove(panel);
 
-	for (int i = 0; i < cloudsX.length; i++) {
-		int x = gen.nextInt(1000);
-		int y = gen.nextInt(200);
-		cloudsX[i] = x;
-		cloudsY[i] = y;
+				randomize();
+			}
+
+			else {
+				System.out.println("ERROR");
+				isOnEndState = true;
+				drawEndState(frame.getGraphics());
+				nonMolesPressed = nonMolesPressed + 1;
+				frame.remove(panel);
+				panel = new JPanel();
+				frame.add(panel);
+				frame.requestFocus();
+
+			}
+
+		}
 
 	}
 
-}
+	public void drawEndState(Graphics g) {
+		g.setColor(Color.cyan);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
 
-public void makeDaClouds(int y, Color cul) {
+		for (int i = 0; i < cloudList.size(); i++) {
+			g.setColor(cloudList.get(i).cul);
+			g.fillOval(cloudList.get(i).x, cloudList.get(i).y, 100, 100);
 
-	int x = -200;
+		}
 
-	for (int i = 0; i < 50; i++) {
-		x += gen.nextInt(70) + 30;
-		int cY = y + gen.nextInt(50) + -25;
+		g.setFont(font);
+		g.setColor(new Color(150, 250, 150));
+		g.drawString("Score:" + molesPressed + "", 50, 150);
+		g.setFont(fontEndScreen);
 
-		Cloud daCloud = new Cloud(x, cY, cul);
-		cloudList.add(daCloud);
+		g.setColor(new Color(150, 250, 150));
+		g.drawString("Game Over", GameCore.WIDTH / 2 - 230, GameCore.HEIGHT / 2 - 103);
+		g.setFont(fontRestartText);
+		g.drawString("Press Any Key (Except Esc) To Restart...", GameCore.WIDTH / 2 - 330, GameCore.HEIGHT / 2 - 53);
 	}
 
-}
+	public void calculateDaClouds() {
 
-@Override
-public void keyTyped(KeyEvent e) {
-	
-	
-}
+		for (int i = 0; i < cloudsX.length; i++) {
+			int x = gen.nextInt(1000);
+			int y = gen.nextInt(200);
+			cloudsX[i] = x;
+			cloudsY[i] = y;
 
-@Override
-public void keyPressed(KeyEvent e) {
-	int keyCode = e.getKeyCode();
-	if(keyCode == 27){
-	System.exit(0);	
+		}
+
 	}
-	else {
-		frame.remove(panel);
-		isOnEndState = false;
-		randomize();
-		seconds = 0;
-	}
-	System.out.println(keyCode);
-	
-	
-}
 
-@Override
-public void keyReleased(KeyEvent e) {
-	
-	
-}
+	public void makeDaClouds(int y, Color cul) {
+
+		int x = -200;
+
+		for (int i = 0; i < 50; i++) {
+			x += gen.nextInt(70) + 30;
+			int cY = y + gen.nextInt(50) + -25;
+
+			Cloud daCloud = new Cloud(x, cY, cul);
+			cloudList.add(daCloud);
+		}
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		if (keyCode == 27) {
+			System.exit(0);
+		} else {
+			frame.remove(panel);
+			isOnEndState = false;
+			randomize();
+			seconds = 0;
+			molesPressed = 0;
+			nonMolesPressed = 0;
+		}
+		System.out.println(keyCode);
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+	}
 
 }
