@@ -136,10 +136,13 @@ public class WhackAMole implements ActionListener, KeyListener {
 			g.fillOval(cloudList.get(i).x, cloudList.get(i).y, 100, 100);
 
 		}
+		
+		double score = molesPressed - seconds/5.0 ;
+		//Re-Vamp needed to use molesPressed to Seconds Ratio in more positive score
 
 		g.setFont(font);
 		g.setColor(new Color(150, 250, 150));
-		g.drawString("Score:" + molesPressed + "", 50, 150);
+		g.drawString("Score:" + score + "", 50, 150);
 		g.setFont(fontEndScreen);
 
 		g.setColor(new Color(150, 250, 150));
